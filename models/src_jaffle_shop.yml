@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+ - name: jaffle_shop
+   description: A schema for tables from Postgres database. 
+   database: raw
+   tables:
+     - name: customers
+       description: the table of customers from postgres.customers
+       columns:
+         - name: id
+           tests:
+             - not_null
+             - unique
+     - name: orders
+       loaded_at_field: _etl_loaded_at
+       freshness: 
+         warn_after: {count: 12, period: hour}
+         error_after: {count: 24, period: hour}
+       description: the table of orders generated from website. 
+       columns:
+         - name: id
+           tests:
+             - unique
+             - not_null
