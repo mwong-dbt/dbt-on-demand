@@ -6,4 +6,4 @@ SELECT
   , amount/100 as amount
   , created as created_at
   , _batched_at
-FROM "RAW"."STRIPE"."PAYMENT"
+FROM {{ source('stripe', 'payment') }}
