@@ -20,7 +20,6 @@ models:
       - name: customer_id
         description: Foreign Key with the stg_customers table.
         tests:
-          - unique
           - not_null
           - relationships:
                      to: ref('stg_customers')
